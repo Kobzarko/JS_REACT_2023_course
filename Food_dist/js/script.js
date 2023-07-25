@@ -241,4 +241,57 @@ window.addEventListener('DOMContentLoaded',()=>{
         "menu__item"
     ).render();
 
+    // FORMS
+
+    const forms = document.querySelectorAll('form');
+    const message = {
+        loading: 'Loading...',
+        success: 'Thank you! We will contact you',
+        failure: 'Error'
+    };
+
+    forms.forEach((item)=>{
+        postData(item);
+    });
+
+    function postData(form){
+        form.addEventListener('submit',(e)=>{
+            e.preventDefault();
+
+            let statusMessage = document.createElement('div');
+            statusMessage.classList.add('status');
+            statusMessage.textContent = message.loading;
+            form.appendChild(statusMessage);
+
+            const request = new XMLHttpRequest(); //create WEB API class
+            request.open('POST', 'server.php'); // method POST
+            request.setRequestHeader('Content-type', 'application/JSON;charset=utf-8');
+            const formData = new FormData(form);
+
+            const object ={};
+            formData.forEach(function(value, key){
+                object[key]=value;
+            });
+
+            const json = JSON.stringify(object); //convert an object to JSON
+
+            request.send(json); // send request to the server
+
+            request.addEventListener('load',()=>{
+                if(request.status === 200){
+                    console.log(request.response);
+                    statusMessage.textContent = message.success;
+                    form.reset(); // clean inputs
+                    setTimeout(()=>{
+                        statusMessage.remove();
+                    },2000); // message will disapear in 2 sec
+
+                }else{
+                    statusMessage.textContent = message.failure;
+                }
+            });
+
+        });
+    }
+
 });
