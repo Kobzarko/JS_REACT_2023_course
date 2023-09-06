@@ -1,0 +1,25 @@
+{
+  "name": "food",
+  "version": "1.0.0",
+  "description": "desc",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kobzarko/JS_REACT_2023_course.git"
+  },
+  "keywords": [
+    "y"
+  ],
+  "author": "Yevhen Pyshiev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kobzarko/JS_REACT_2023_course/issues"
+  },
+  "homepage": "https://github.com/Kobzarko/JS_REACT_2023_course#readme",
+  "devDependencies": {
+    "json-server": "^0.17.3"
+  }
+}
